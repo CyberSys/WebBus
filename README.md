@@ -47,6 +47,7 @@ This version is for Godot 4.x.
 | [Invite Links](#invite-links)  | ✅          | ❌           | ✅    |
 | [Invite Button](#invite-button)  | ✅          | ❌           | ❌    |
 | [Server time](#server-time)       | ❌          | ✅           | ❌    |
+| [Game Rating](#game-rating)       | ❌          | ✅           | ❌    |
 | [Desktop shortcut](#desktop-shortcut)   | ❌          | ✅           | ❌    |
 
 ## Installation
