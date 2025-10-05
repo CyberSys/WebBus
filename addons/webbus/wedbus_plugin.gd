@@ -5,13 +5,13 @@ const  AUTOLOAD_NAME_AD = "WebBus"
 
 var export_plugin: WebBusHTMLExportPlugin
 
-const MainScreenScene = preload("res://addons/WebBusPlugin/MainScreenScene.tscn")
+const MainScreenScene = preload("res://addons/webbus/main_screen_scene.tscn")
 var main_screen_scene_instance
 
 func _enter_tree():
 	# Initialization of the plugin goes here.
-	add_autoload_singleton(AUTOLOAD_NAME_AD, "res://addons/WebBusPlugin/WebBus.gd")
-	export_plugin = load("res://addons/WebBusPlugin/export_plugin.gd").new()
+	add_autoload_singleton(AUTOLOAD_NAME_AD, "res://addons/webbus/webbus.gd")
+	export_plugin = load("res://addons/webbus/export_plugin.gd").new()
 	add_export_plugin(export_plugin)
 	
 	# Init main screen scene

@@ -446,6 +446,7 @@ func hide_banner() -> void:
 #endregion
 #region game
 	
+
 func start_gameplay():
 	match platform:
 		Platform.YANDEX:
