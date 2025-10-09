@@ -10,6 +10,8 @@ signal ad_started
 signal focused
 signal unfocused
 
+signal _inited
+
 var is_init:bool = false
 
 var _adCallbacks:JavaScriptObject
@@ -81,8 +83,7 @@ enum Platform {YANDEX, CRAZY, GAMEDISTRIBUTION, POKI, VK}
 
 var platform : int
 
-signal _inited
-
+var tools := WebBusTools.new()
 
 #region _ready
 func _ready() -> void:
@@ -111,7 +112,7 @@ func _ready() -> void:
 					platform = Platform.POKI
 					system_info.platform = "poki"
 				"vk":
-					platform = Platform.POKI
+					platform = Platform.VK
 					system_info.platform = "vk"
 				_:
 					platform = -1
@@ -307,6 +308,8 @@ func show_ad() -> void:
 				game_dist_show_ad()
 			Platform.POKI:
 				poki_show_ad()
+			Platform.VK:
+				vk_show_ad()
 			_:
 				push_warning("Platform not supported")
 	else:
@@ -329,6 +332,8 @@ func show_rewarded_ad()-> void:
 				game_dist_show_rewarded_ad()
 			Platform.POKI:
 				poky_show_rewarded_ad()
+			Platform.VK:
+				vk_show_rewarded_ad()
 			_:
 				push_warning("Platform not supported")
 	else:
@@ -371,43 +376,75 @@ func game_dist_show_rewarded_ad()-> void:
 
 # Poki
 
-func poki_show_ad()-> void:
+func poki_show_ad() -> void:
 	while not PokiSDK:
 		await _SDK_inited
 	ad_started.emit()
 	PokiSDK.commercialBreak().then(_adFinishedCallback)
 
-var _poki_rewarded_ad = JavaScriptBridge.create_callback(_poki_reward_ad)
 
-func poky_show_rewarded_ad()-> void:
+func poky_show_rewarded_ad() -> void:
 	while not PokiSDK:
 		await _SDK_inited
 	ad_started.emit()
-	PokiSDK.rewardedBreak().then(_poki_rewarded_ad)
+	PokiSDK.rewardedBreak().then(_reward_check_ad_callback)
+#vk
 
-func _poki_reward_ad(args)-> void:
+func vk_show_ad() -> void:
+	var config := JavaScriptBridge.create_object("Object")
+	config["ad_format"] = 'interstitial'
+	ad_started.emit()
+	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_ad_callback)
+	
+
+func vk_show_rewarded_ad() -> void:
+	var config := JavaScriptBridge.create_object("Object")
+	config["ad_format"] = 'reward'
+	ad_started.emit()
+	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_reward_callback)
+
+#Callbacks
+func _rewarded_ad(args) -> void:
+	reward_added.emit()
+	
+func _ad(args) -> void:
+	ad_closed.emit()
+	
+func _adError(args) -> void:
+	push_error("WebBus error:", tools.js_to_dict(args[0]))
+	ad_error.emit()
+	
+func _adStarted(args) -> void:
+	ad_started.emit()
+
+func _ad_reward_and_close(args) -> void:
+	reward_added.emit()
+	ad_closed.emit()
+
+var _reward_check_ad_callback := JavaScriptBridge.create_callback(_reward_check_ad)
+
+func _reward_check_ad(args) -> void:
 	if args[0]:
 		reward_added.emit()
 	else:
 		ad_error.emit()
 	ad_closed.emit()
+	
+var _vk_ad_callback := JavaScriptBridge.create_callback(_vk_ad_result)
+var _vk_reward_callback := JavaScriptBridge.create_callback(_vk_reward_result)
 
-#Callbacks
-func _rewarded_ad(args)-> void:
-	reward_added.emit()
-	
-func _ad(args)-> void:
-	ad_closed.emit()
-	
-func _adError(args)-> void:
-	push_error("WebBus error:", _js_to_dict(args[0]))
-	ad_error.emit()
-	
-func _adStarted(args)-> void:
-	ad_started.emit()
+func _vk_ad_result(args) -> void:
+	if args[0].result:
+		ad_closed.emit()
+	else:
+		_adError(args)
+		ad_closed.emit()
 
-func _ad_reward_and_close(args)-> void:
-	reward_added.emit()
+func _vk_reward_result(args) -> void:
+	if args[0].result:
+		reward_added.emit()
+	else:
+		_adError(args)
 	ad_closed.emit()
 
 
@@ -446,6 +483,7 @@ func hide_banner() -> void:
 #endregion
 #region game
 	
+
 func start_gameplay():
 	match platform:
 		Platform.YANDEX:
@@ -563,7 +601,7 @@ func set_data(data:Dictionary) -> void:
 	if OS.get_name() == "Web":
 		match platform:
 			Platform.YANDEX:
-				var _data:JavaScriptObject = _to_js(data)
+				var _data:JavaScriptObject = tools.to_js(data)
 				js_player.setData(_data)
 			Platform.CRAZY:
 				for k in data:
@@ -575,11 +613,11 @@ func set_data(data:Dictionary) -> void:
 signal _getted_data
 
 var _callback_getting_data = JavaScriptBridge.create_callback(func(args):
-	_getted_data.emit(_js_to_dict(args[0], false))
+	_getted_data.emit(tools.js_to_dict(args[0], false))
 	)
 	
 var _callback_getting_data_error = JavaScriptBridge.create_callback(func(args):
-	push_error("WebBus error:", _js_to_dict(args[0]))
+	push_error("WebBus error:", tools.js_to_dict(args[0]))
 	_getted_data.emit({})
 	)
 
@@ -588,7 +626,7 @@ func get_data(keys:Array) -> Dictionary:
 	if OS.get_name() == "Web":
 		match platform:
 			Platform.YANDEX:
-				var _data:JavaScriptObject = _to_js(keys)
+				var _data:JavaScriptObject = tools.to_js(keys)
 				js_player.getData(_data).then(_callback_getting_data).catch(_callback_getting_data_error)
 				result = await _getted_data
 				return result
@@ -605,7 +643,7 @@ func set_stats(data:Dictionary) -> void:
 	if OS.get_name() == "Web":
 		match platform:
 			Platform.YANDEX:
-				var _data:JavaScriptObject = _to_js(data)
+				var _data:JavaScriptObject = tools.to_js(data)
 				js_player.setStats(_data)
 			Platform.CRAZY:
 				for k in data:
@@ -617,11 +655,11 @@ func set_stats(data:Dictionary) -> void:
 signal _getted_stats
 
 var _callback_getting_stats = JavaScriptBridge.create_callback(func(args):
-	_getted_stats.emit(_js_to_dict(args[0], false))
+	_getted_stats.emit(tools.js_to_dict(args[0], false))
 	)
 	
 var _callback_getting_stats_error = JavaScriptBridge.create_callback(func(args):
-	push_error("WebBus error:", _js_to_dict(args[0]))
+	push_error("WebBus error:", tools.js_to_dict(args[0]))
 	_getted_stats.emit({})
 	)
 
@@ -630,7 +668,7 @@ func get_stats(keys:Array) -> Dictionary:
 	if OS.get_name() == "Web":
 		match platform:
 			Platform.YANDEX:
-				var _data:JavaScriptObject = _to_js(keys)
+				var _data:JavaScriptObject = tools.to_js(keys)
 				js_player.getStats(_data).then(_callback_getting_stats).catch(_callback_getting_stats_error)
 				result = await _getted_stats
 				return result
@@ -659,7 +697,7 @@ func get_leaderboard_info(leaderboard:String):
 			return
 
 func _leaderboard_info_recieved(info):
-	leaderboard_info_recieved.emit(_js_to_dict(info[0]))
+	leaderboard_info_recieved.emit(tools.js_to_dict(info[0]))
 
 
 signal leaderboard_score_setted
@@ -695,7 +733,7 @@ func get_leaderboard_player_entry(leaderboard:String) -> Dictionary:
 			return {}
 		
 func _leaderboard_player_entry_recieved(info) -> void:
-	leaderboard_player_entry_recieved.emit(_js_to_dict(info[0]))
+	leaderboard_player_entry_recieved.emit(tools.js_to_dict(info[0]))
 
 
 signal leaderboard_entries_recieved
@@ -717,7 +755,7 @@ func get_leaderboard_entries(leaderboard:String, include_user:bool = true, quant
 			return {}
 
 func _leaderboard_entries_recieved(info):
-	leaderboard_entries_recieved.emit(_js_to_dict(info[0]))
+	leaderboard_entries_recieved.emit(tools.js_to_dict(info[0]))
 
 
 func get_server_time() -> int:
@@ -734,7 +772,7 @@ func get_server_time() -> int:
 signal can_feedback(result:Dictionary)
 
 var _callback_can_rewiew = JavaScriptBridge.create_callback(func(args):
-	can_feedback.emit(_js_to_dict(args[0])))
+	can_feedback.emit(tools.js_to_dict(args[0])))
 
 func can_rewiew() -> Dictionary:
 	match platform:
@@ -751,7 +789,7 @@ func can_rewiew() -> Dictionary:
 signal request_feedback(result:Dictionary)
 
 var _callback_request_rewiew = JavaScriptBridge.create_callback(func(args):
-	request_feedback.emit(_js_to_dict(args[0])))	
+	request_feedback.emit(tools.js_to_dict(args[0])))	
 
 func request_review() -> Dictionary:
 	match platform:
@@ -768,7 +806,7 @@ func request_review() -> Dictionary:
 signal could_show_prompt(result:Dictionary)
 
 var _callback_can_show_prompt = JavaScriptBridge.create_callback(func(args):
-	could_show_prompt.emit(_js_to_dict(args[0])))
+	could_show_prompt.emit(tools.js_to_dict(args[0])))
 
 func can_show_prompt() -> Dictionary:
 	match platform:
@@ -784,7 +822,7 @@ func can_show_prompt() -> Dictionary:
 signal showed_prompt(result:Dictionary)
 
 var callback_show_prompt = JavaScriptBridge.create_callback(func(args):
-	showed_prompt.emit(_js_to_dict(args[0])))
+	showed_prompt.emit(tools.js_to_dict(args[0])))
 
 func show_prompt() -> Dictionary:
 	match platform:
@@ -947,7 +985,7 @@ func init_payments(signed:bool = false) -> void:
 signal purchased(data:Dictionary)
 
 var _purchase_callback := JavaScriptBridge.create_callback(func(args):
-	purchased.emit(_js_to_dict(args[0]))
+	purchased.emit(tools.js_to_dict(args[0]))
 	)
 
 var _purchase_error_callback := JavaScriptBridge.create_callback(func(args):
@@ -955,7 +993,7 @@ var _purchase_error_callback := JavaScriptBridge.create_callback(func(args):
 	if args[0].code == "payment_user_canceled":
 		message = "Payment user canceled"
 	else:
-		message = _js_to_dict(args[0])
+		message = tools.js_to_dict(args[0])
 	purchased.emit({"error": true, "message": message})
 	)
 
@@ -979,10 +1017,10 @@ func purchase(id:String, developer_payload:String = "") -> Dictionary:
 signal purchases_getted(list:Array)
 
 var _get_purchases_callback := JavaScriptBridge.create_callback(func(args):
-	purchases_getted.emit(_js_to_dict(args[0])))
+	purchases_getted.emit(tools.js_to_dict(args[0])))
 
 var _get_purchases_error_callback := JavaScriptBridge.create_callback(func(args):
-	push_warning(_js_to_dict(args[0]))
+	push_warning(tools.js_to_dict(args[0]))
 	purchases_getted.emit([]))
 
 func get_purchases() -> Array:
@@ -1000,10 +1038,10 @@ func get_purchases() -> Array:
 signal catalog_getted(list:Array)
 
 var _get_catalog_callback := JavaScriptBridge.create_callback(func(args):
-	catalog_getted.emit(_js_to_dict(args[0])))
+	catalog_getted.emit(tools.js_to_dict(args[0])))
 
 var _get_catalog_error_callback := JavaScriptBridge.create_callback(func(args):
-	push_warning(_js_to_dict(args[0]))
+	push_warning(tools.js_to_dict(args[0]))
 	catalog_getted.emit([]))
 
 func get_catalog() -> Array:
@@ -1025,7 +1063,7 @@ var _consume_callback := JavaScriptBridge.create_callback(func(args):
 	)
 	
 var _consume_error_callback := JavaScriptBridge.create_callback(func(args):
-	push_warning(_js_to_dict(args[0]))
+	push_warning(tools.js_to_dict(args[0]))
 	consumed.emit(false)
 	)
 
@@ -1040,48 +1078,4 @@ func consume_purchase(token:String) -> bool:
 	return false
 	
 
-#endregion
-#region tool
-
-func _js_to_dict(js_object:JavaScriptObject, is_snake:bool=true) -> Variant:
-	var window := JavaScriptBridge.get_interface("window")
-	var strn = window.JSON.stringify(js_object)
-	var dict = JSON.parse_string(strn)
-	if is_snake:
-		return _re_snake(dict)
-	return dict
-
-
-func _re_snake(data:Variant) -> Variant:
-	var new_data = data
-	if data is Dictionary:
-		new_data = {}
-		for k in data:
-			if k is String:
-				var k_snake = k.to_snake_case()
-				new_data[k_snake] = _re_snake(data[k])
-			else:
-				new_data[k] = _re_snake(data[k])
-	elif data is Array:
-		new_data = []
-		for e in data:
-			new_data.append(_re_snake(e))
-	elif data is float:
-		if data == int(data):
-			new_data = int(data)
-	return new_data
-	
-	
-func _to_js(data:Variant) -> Variant:
-	if data is Dictionary:
-		var js_object = JavaScriptBridge.create_object("Object")
-		for k in data:
-			js_object[k] = _to_js(data[k])
-		return js_object
-	if data is Array:
-		var js_object = JavaScriptBridge.create_object("Array")
-		for k in data:
-			js_object.push(_to_js(k))
-		return js_object
-	return data
 #endregion

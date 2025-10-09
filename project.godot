@@ -17,8 +17,8 @@ markdown_book/docs_folder="/"
 config/name="WebBus"
 config/version="0.5.2"
 config/tags=PackedStringArray("tools")
-run/main_scene="res://addons/WebBusPlugin/Demo/Demo.tscn"
-config/features=PackedStringArray("4.4", "Forward Plus")
+run/main_scene="res://addons/webbus/Demo/Demo.tscn"
+config/features=PackedStringArray("4.5", "Forward Plus")
 run/max_fps=30
 boot_splash/bg_color=Color(0.0358351, 0.138565, 0.12502, 1)
 boot_splash/fullsize=false
@@ -26,11 +26,19 @@ config/icon="res://icon.png"
 
 [autoload]
 
-WebBus="*res://addons/WebBusPlugin/WebBus.gd"
+WebBus="*res://addons/webbus/webbus.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/WebBusPlugin/plugin.cfg", "res://addons/custom-html-loader/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/custom-html-loader/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/wakatime/plugin.cfg", "res://addons/webbus/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://addons/custom-html-loader/": "gray",
+"res://addons/script-ide/": "gray",
+"res://addons/wakatime/": "gray"
+}
 
 [rendering]
 

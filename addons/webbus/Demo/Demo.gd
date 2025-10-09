@@ -183,3 +183,7 @@ func _on_set_stats_pressed() -> void:
 
 func _on_get_stats_pressed() -> void:
 	print(await WebBus.get_stats([$VBoxContainer/HBoxContainer/Data/HBoxContainer5/key.text]))
+	
+	
+func run_test() -> void:
+	pass

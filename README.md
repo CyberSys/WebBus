@@ -33,22 +33,22 @@ This version is for Godot 4.x.
 - Crazy games
 - Yandex games
 - Poki
+- VK
 
-| Feature            | Crazy Games | Yandex Games | Poki  |
-|--------------------|:-----------:|:------------:|:------:|
-| [Fullscreen Advertisement](#fullscreen-advertisement)     | ✅          | ✅           | ✅    |
-| [Rewarded Advertisement](#rewarded-advertisement)       | ✅          | ✅           | ✅    |
-| [Banner Advertisement](#banner-advertisement)       | ✅          | ✅           | ❌    |
-| [User Info](#user)      | ✅          | ✅           | ❌    |
-| [Authentication](#authentication)      | ✅          | ✅           | ❌    |
-| [User Data](#user-data)      | ✅          | ✅           | ❌    |
-| [Leaderboards](#leaderboards)      | ❌          | ✅           | ❌    |
-| [Payments](#payments)          | ❌          | ✅           | ❌    |
-| [Invite Links](#invite-links)  | ✅          | ❌           | ✅    |
-| [Invite Button](#invite-button)  | ✅          | ❌           | ❌    |
-| [Server time](#server-time)       | ❌          | ✅           | ❌    |
-| [Game Rating](#game-rating)       | ❌          | ✅           | ❌    |
-| [Desktop shortcut](#desktop-shortcut)   | ❌          | ✅           | ❌    |
+| Feature            | Crazy Games | Yandex Games | Poki    | VK     |
+|--------------------|:-----------:|:------------:|:-------:|:------:|
+| [Fullscreen Advertisement](#fullscreen-advertisement)     | ✅          | ✅           | ✅    | ✅    |       
+| [Rewarded Advertisement](#rewarded-advertisement)       | ✅          | ✅           | ✅    | ✅    |  
+| [Banner Advertisement](#banner-advertisement)       | ✅          | ✅           | ❌    | ✍️    |
+| [User Info](#user)      | ✅          | ✅           | ❌    | ✍️    |
+| [Authentication](#authentication)      | ✅          | ✅           | ❌    | ✍️    |
+| [User Data](#user-data)      | ✅          | ✅           | ❌    | ✍️    |
+| [Leaderboards](#leaderboards)      | ❌          | ✅           | ❌    | ✍️    |
+| [Payments](#payments)          | ❌          | ✅           | ❌    | ✍️    |
+| [Invite Links](#invite-links)  | ✅          | ❌           | ✅    | ❌    |
+| [Invite Button](#invite-button)  | ✅          | ❌           | ❌    | ❌    |
+| [Server time](#server-time)       | ❌          | ✅           | ❌    | ❌    |
+| [Desktop shortcut](#desktop-shortcut)   | ❌          | ✅           | ❌    | ✍️    |
 
 ## Installation
 
@@ -87,6 +87,7 @@ Calling full-screen advertisement:
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![✔️](https://img.shields.io/badge/Supported-green) |
+| VK                | ![✔️](https://img.shields.io/badge/Supported-green) |
 
 
 ```gdscript
@@ -102,6 +103,7 @@ Calling rewarded advertisement:
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![✔️](https://img.shields.io/badge/Supported-green) |
+| VK                | ![✔️](https://img.shields.io/badge/Supported-green) |
 
 
 ```gdscript
@@ -115,7 +117,7 @@ For full-screen and rewarded advertisements, there are 4 callback signals:
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![✔️](https://img.shields.io/badge/Supported-green) |
-
+| VK                | ![✔️](https://img.shields.io/badge/Supported-green) |
 
 ```gdscript
 signal reward_added 
@@ -164,7 +166,7 @@ Calling banner advertisement:
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-
+| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
 
 ```gdscript
 WebBus.show_banner()
@@ -177,6 +179,7 @@ Close banner advertisement:
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
 
 ```gdscript
 WebBus.hide_banner()
@@ -192,6 +195,7 @@ The `start_gameplay()` function has to be called whenever the player starts play
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![✔️](https://img.shields.io/badge/Supported-green) |
+| VK                | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 
 ```gdscript
 WebBus.start_gameplay()
@@ -204,6 +208,7 @@ The `stop_gameplay()` function has to be called on every game break, don't forge
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![✔️](https://img.shields.io/badge/Supported-green) |
+| VK                | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 
 ```gdscript
 WebBus.stop_gameplay()
@@ -217,6 +222,7 @@ The `happytime()` method can be called on various player achievements.
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 
 
 ```gdscript
@@ -230,6 +236,7 @@ The `start_loading()` function has to be called whenever you start loading your 
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 
 ```gdscript
 WebBus.start_loading()
@@ -248,6 +255,7 @@ Call `ready()` when the game is fully loaded and ready to play.
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![✔️](https://img.shields.io/badge/Supported-green) |
+| VK                | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 
 ```gdscript
 WebBus.ready()
@@ -260,6 +268,7 @@ WebBus.ready()
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
 
 `user_info` dictionary contains player's username and avatar link
 
@@ -278,7 +287,7 @@ var avatar_link = WebBus.user_info.avatar
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-
+| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
 
 ```gdscript
 var succees_auth = await WebBus.open_auth_dialog()
@@ -293,6 +302,7 @@ print(WebBus.user_info.player_name)
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
 
 Setting data:
 
@@ -341,7 +351,7 @@ The function returns a `String`. Possible values are: "yandex", "crazy_games", "
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![✔️](https://img.shields.io/badge/Supported-green) |
-
+| VK                | ![✔️](https://img.shields.io/badge/Supported-green) |
 ```gdscript
 var platform_name = WebBus.get_platform()
 ```
@@ -355,6 +365,7 @@ The function returns a `String`, possible values: "desktop", "tablet", "mobile".
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
 
 ```gdscript
 var device_type = WebBus.get_type_device()
@@ -369,6 +380,7 @@ The function returns 2-letter language code.
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
 
 ```gdscript
 var language = WebBus.get_language()
@@ -383,6 +395,7 @@ var language = WebBus.get_language()
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      |![❌](https://img.shields.io/badge/Not_Supported-red)|
 | Poki              |  ![✔️](https://img.shields.io/badge/Supported-green)  |
+| VK                | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 
 Create invite links with your parameters:
 
@@ -407,8 +420,9 @@ var value = await WebBus.get_invite_param(params)
 | Platform          | Supported |
 |-------------------|-----------|
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
-| Yandex Games      |![❌](https://img.shields.io/badge/Not_Supported-red)|
-| Poki              |![❌](https://img.shields.io/badge/Not_Supported-red)  |
+| Yandex Games      | ![❌](https://img.shields.io/badge/Not_Supported-red)|
+| Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red)  |
+| VK                | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 
 Show invite button:
 
@@ -430,6 +444,7 @@ WebBus.hide_invite_button(params)
 | Crazy Games       | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
 
 Features exclusive to Yandex games.
 
@@ -502,6 +517,7 @@ WebBus.set_leaderboard_score(name_leaderboard, score, extra_data)
 | Crazy Games       | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
 
 
 Init yandex payments
@@ -560,6 +576,7 @@ if ! purchase.get("error", false): # Check if the purchase was successful
 | Crazy Games       | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 
 
 Get server time
@@ -575,6 +592,7 @@ var time:int = WebBus.get_server_time() # Example: 1720613073778
 | Crazy Games       | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 
 
 Check if the player can provide feedback:
@@ -601,6 +619,7 @@ print(feedback_request.feedback_sent) # bool
 | Crazy Games       | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
+| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
 
 Check if the player can show a prompt:
 
@@ -625,6 +644,7 @@ print(result.outcome) # "accepted"
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![✔️](https://img.shields.io/badge/Supported-green) |
+| VK                | ![✔️](https://img.shields.io/badge/Supported-green) |
 
 >[!NOTE]
 >This function works on any hosting, including the test server Godot.
