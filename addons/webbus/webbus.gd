@@ -296,6 +296,7 @@ func _set_pause_signal() -> void:
 ## Crazy Games  ✔️[br]
 ## Yandex Games  ✔️[br]
 ## Poki  ✔️[br]
+## VK  ✔️[br]
 ## Docs: [url]https://github.com/talkafk/WebBus?tab=readme-ov-file#advertisement[/url]
 func show_ad() -> void:
 	if OS.get_name() == "Web":
@@ -320,6 +321,7 @@ func show_ad() -> void:
 ## Crazy Games  ✔️[br]
 ## Yandex Games  ✔️[br]
 ## Poki  ✔️[br]
+## VK  ✔️[br]
 ## Docs: [url]https://github.com/talkafk/WebBus?tab=readme-ov-file#advertisement[/url]
 func show_rewarded_ad()-> void:
 	if OS.get_name() == "Web":
@@ -394,14 +396,14 @@ func vk_show_ad() -> void:
 	var config := JavaScriptBridge.create_object("Object")
 	config["ad_format"] = 'interstitial'
 	ad_started.emit()
-	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_ad_callback)
+	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_ad_callback).catch(_adErrorCallback)
 	
 
 func vk_show_rewarded_ad() -> void:
 	var config := JavaScriptBridge.create_object("Object")
 	config["ad_format"] = 'reward'
 	ad_started.emit()
-	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_reward_callback)
+	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_reward_callback).catch(_adErrorCallback)
 
 #Callbacks
 func _rewarded_ad(args) -> void:
@@ -453,6 +455,7 @@ func _vk_reward_result(args) -> void:
 ## Crazy Games  ✔️[br]
 ## Yandex Games  ✔️[br]
 ## Poki  ❌[br]
+## VK  ✔️[br]
 ## Docs: [url]https://github.com/talkafk/WebBus?tab=readme-ov-file#advertisement[/url]
 func show_banner() -> void:
 	match platform:
@@ -465,11 +468,16 @@ func show_banner() -> void:
 				await _SDK_inited
 			JavaScriptBridge.eval('document.getElementById("responsive-banner-container").style.display = "block"')
 			CrazySDK.banner.requestResponsiveBanner("responsive-banner-container")
+		Platform.VK:
+			while not vkBridge:
+				await _SDK_inited
+			var req := tools.VKRequest.new()
+			req.send("VKWebAppShowBannerAd")
 		_:
 			push_warning("Platform not supported")
 			return
 
-		
+			
 func hide_banner() -> void:	
 	match platform:
 		Platform.YANDEX:
@@ -477,6 +485,9 @@ func hide_banner() -> void:
 		Platform.CRAZY:
 			JavaScriptBridge.eval('document.getElementById("responsive-banner-container").style.display = "none"')
 			CrazySDK.banner.clearBanner("responsive-banner-container")
+		Platform.VK:
+			var req := tools.VKRequest.new()
+			req.send("VKWebAppHideBannerAd")
 		_:
 			push_warning("Platform not supported")
 			return
@@ -1077,5 +1088,4 @@ func consume_purchase(token:String) -> bool:
 			push_warning("Platform not supported")
 	return false
 	
-
 #endregion

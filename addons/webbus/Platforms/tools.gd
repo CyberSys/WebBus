@@ -42,3 +42,43 @@ func to_js(data:Variant) -> Variant:
 			js_object.push(to_js(k))
 		return js_object
 	return data
+	
+	
+class VKRequest:
+	var callback:Callable
+	var configs:Dictionary
+	var event:String
+	
+	var tools := WebBusTools.new()
+	
+	var result_callback := JavaScriptBridge.create_callback(func(args):
+		if args[0]:
+			callback.call(tools.js_to_dict(args[0]))
+		else:
+			push_error("Error vk request")
+	)
+
+	var send_callback := JavaScriptBridge.create_callback(func(args):
+		if args[0]:
+			if configs:
+				var _conf := tools.to_js(configs)
+				WebBus.vkBridge.send(event, _conf).then(result_callback)
+			else:
+				WebBus.vkBridge.send(event).then(result_callback)
+		else:
+			push_error("Error vk request")
+		)
+
+	func send(_event:String, _configs:Dictionary={}, _callback:Callable=_callback_pass):
+		if OS.get_name() == "Web" and WebBus.platform == WebBus.Platform.VK:
+			configs = _configs
+			callback = _callback
+			event = _event
+			WebBus.vkBridge.supportsAsync(event).then(send_callback)
+		else:
+			push_warning("Platform not supported")
+	
+	func _callback_pass(data:Variant) -> void:
+		pass
+		
+	
