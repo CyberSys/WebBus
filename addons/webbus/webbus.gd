@@ -112,7 +112,7 @@ func _ready() -> void:
 					platform = Platform.POKI
 					system_info.platform = "poki"
 				"vk":
-					platform = Platform.POKI
+					platform = Platform.VK
 					system_info.platform = "vk"
 				_:
 					platform = -1
@@ -308,6 +308,8 @@ func show_ad() -> void:
 				game_dist_show_ad()
 			Platform.POKI:
 				poki_show_ad()
+			Platform.VK:
+				vk_show_ad()
 			_:
 				push_warning("Platform not supported")
 	else:
@@ -330,6 +332,8 @@ func show_rewarded_ad()-> void:
 				game_dist_show_rewarded_ad()
 			Platform.POKI:
 				poky_show_rewarded_ad()
+			Platform.VK:
+				vk_show_rewarded_ad()
 			_:
 				push_warning("Platform not supported")
 	else:
@@ -372,43 +376,75 @@ func game_dist_show_rewarded_ad()-> void:
 
 # Poki
 
-func poki_show_ad()-> void:
+func poki_show_ad() -> void:
 	while not PokiSDK:
 		await _SDK_inited
 	ad_started.emit()
 	PokiSDK.commercialBreak().then(_adFinishedCallback)
 
-var _poki_rewarded_ad = JavaScriptBridge.create_callback(_poki_reward_ad)
 
-func poky_show_rewarded_ad()-> void:
+func poky_show_rewarded_ad() -> void:
 	while not PokiSDK:
 		await _SDK_inited
 	ad_started.emit()
-	PokiSDK.rewardedBreak().then(_poki_rewarded_ad)
+	PokiSDK.rewardedBreak().then(_rewarded_check_ad)
+#vk
 
-func _poki_reward_ad(args)-> void:
+func vk_show_ad() -> void:
+	var config := JavaScriptBridge.create_object("Object")
+	config["ad_format"] = 'interstitial'
+	ad_started.emit()
+	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_ad_callabck)
+	
+
+func vk_show_rewarded_ad() -> void:
+	var config := JavaScriptBridge.create_object("Object")
+	config["ad_format"] = 'reward'
+	ad_started.emit()
+	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_reward_callabck)
+
+#Callbacks
+func _rewarded_ad(args) -> void:
+	reward_added.emit()
+	
+func _ad(args) -> void:
+	ad_closed.emit()
+	
+func _adError(args) -> void:
+	push_error("WebBus error:", tools.js_to_dict(args[0]))
+	ad_error.emit()
+	
+func _adStarted(args) -> void:
+	ad_started.emit()
+
+func _ad_reward_and_close(args) -> void:
+	reward_added.emit()
+	ad_closed.emit()
+
+var _rewarded_check_ad := JavaScriptBridge.create_callback(_reward_check_ad)
+
+func _reward_check_ad(args) -> void:
 	if args[0]:
 		reward_added.emit()
 	else:
 		ad_error.emit()
 	ad_closed.emit()
+	
+var _vk_ad_callabck := JavaScriptBridge.create_callback(_vk_ad_result)
+var _vk_reward_callabck := JavaScriptBridge.create_callback(_vk_reward_result)
 
-#Callbacks
-func _rewarded_ad(args)-> void:
-	reward_added.emit()
-	
-func _ad(args)-> void:
-	ad_closed.emit()
-	
-func _adError(args)-> void:
-	push_error("WebBus error:", tools.js_to_dict(args[0]))
-	ad_error.emit()
-	
-func _adStarted(args)-> void:
-	ad_started.emit()
+func _vk_ad_result(args) -> void:
+	if args[0].result:
+		ad_closed.emit()
+	else:
+		_adError(args)
+		ad_closed.emit()
 
-func _ad_reward_and_close(args)-> void:
-	reward_added.emit()
+func _vk_reward_result(args) -> void:
+	if args[0].result:
+		reward_added.emit()
+	else:
+		_adError(args)
 	ad_closed.emit()
 
 
