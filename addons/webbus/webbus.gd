@@ -83,7 +83,7 @@ enum Platform {YANDEX, CRAZY, GAMEDISTRIBUTION, POKI, VK}
 
 var platform : int
 
-@onready var tools := WebBusTools.new()
+var tools := WebBusTools.new()
 
 #region _ready
 func _ready() -> void:
@@ -387,21 +387,21 @@ func poky_show_rewarded_ad() -> void:
 	while not PokiSDK:
 		await _SDK_inited
 	ad_started.emit()
-	PokiSDK.rewardedBreak().then(_rewarded_check_ad)
+	PokiSDK.rewardedBreak().then(_reward_check_ad_callback)
 #vk
 
 func vk_show_ad() -> void:
 	var config := JavaScriptBridge.create_object("Object")
 	config["ad_format"] = 'interstitial'
 	ad_started.emit()
-	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_ad_callabck)
+	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_ad_callback)
 	
 
 func vk_show_rewarded_ad() -> void:
 	var config := JavaScriptBridge.create_object("Object")
 	config["ad_format"] = 'reward'
 	ad_started.emit()
-	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_reward_callabck)
+	vkBridge.send("VKWebAppShowNativeAds", config).then(_vk_reward_callback)
 
 #Callbacks
 func _rewarded_ad(args) -> void:
@@ -421,7 +421,7 @@ func _ad_reward_and_close(args) -> void:
 	reward_added.emit()
 	ad_closed.emit()
 
-var _rewarded_check_ad := JavaScriptBridge.create_callback(_reward_check_ad)
+var _reward_check_ad_callback := JavaScriptBridge.create_callback(_reward_check_ad)
 
 func _reward_check_ad(args) -> void:
 	if args[0]:
@@ -430,8 +430,8 @@ func _reward_check_ad(args) -> void:
 		ad_error.emit()
 	ad_closed.emit()
 	
-var _vk_ad_callabck := JavaScriptBridge.create_callback(_vk_ad_result)
-var _vk_reward_callabck := JavaScriptBridge.create_callback(_vk_reward_result)
+var _vk_ad_callback := JavaScriptBridge.create_callback(_vk_ad_result)
+var _vk_reward_callback := JavaScriptBridge.create_callback(_vk_reward_result)
 
 func _vk_ad_result(args) -> void:
 	if args[0].result:
