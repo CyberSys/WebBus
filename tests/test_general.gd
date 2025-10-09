@@ -6,7 +6,7 @@ static func test_working_test():
 
 
 static func test_valid_plugin():
-	var plugin := load("res://addons/WebBusPlugin/WebBus.gd")
+	var plugin := load("res://addons/webbus/webbus.gd")
 	if plugin.can_instantiate():
 		return OK
 	else:
