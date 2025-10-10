@@ -26,7 +26,10 @@ This version is for Godot 4.x.
    - [Game rating](#game-rating)
    - [Desktop shortcut](#desktop-shortcut)
    - [Pause](#pause)
-- [Main Screen Menu](#main-screen-menu)
+- [Additional Features](#additional-features)
+   - [Archiving](#archiving)
+   - [Crazy Games banner](#crazy-games-banner)
+   - [VK send event](#vk-send-event)
 
 
 ## Supported platforms
@@ -39,7 +42,7 @@ This version is for Godot 4.x.
 |--------------------|:-----------:|:------------:|:-------:|:------:|
 | [Fullscreen Advertisement](#fullscreen-advertisement)     | ✅          | ✅           | ✅    | ✅    |       
 | [Rewarded Advertisement](#rewarded-advertisement)       | ✅          | ✅           | ✅    | ✅    |  
-| [Banner Advertisement](#banner-advertisement)       | ✅          | ✅           | ❌    | ✍️    |
+| [Banner Advertisement](#banner-advertisement)       | ✅          | ✅           | ❌    | ✅    |
 | [User Info](#user)      | ✅          | ✅           | ❌    | ✍️    |
 | [Authentication](#authentication)      | ✅          | ✅           | ❌    | ✍️    |
 | [User Data](#user-data)      | ✅          | ✅           | ❌    | ✍️    |
@@ -166,7 +169,7 @@ Calling banner advertisement:
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
+| VK                | ![✔️](https://img.shields.io/badge/Supported-green) |
 
 ```gdscript
 WebBus.show_banner()
@@ -179,7 +182,7 @@ Close banner advertisement:
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
+| VK                | ![✔️](https://img.shields.io/badge/Supported-green) |
 
 ```gdscript
 WebBus.hide_banner()
@@ -268,7 +271,7 @@ WebBus.ready()
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
+| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
 
 `user_info` dictionary contains player's username and avatar link
 
@@ -287,7 +290,7 @@ var avatar_link = WebBus.user_info.avatar
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
+| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
 
 ```gdscript
 var succees_auth = await WebBus.open_auth_dialog()
@@ -302,7 +305,7 @@ print(WebBus.user_info.player_name)
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
+| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
 
 Setting data:
 
@@ -365,7 +368,7 @@ The function returns a `String`, possible values: "desktop", "tablet", "mobile".
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
+| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
 
 ```gdscript
 var device_type = WebBus.get_type_device()
@@ -380,7 +383,7 @@ The function returns 2-letter language code.
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
+| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
 
 ```gdscript
 var language = WebBus.get_language()
@@ -444,7 +447,7 @@ WebBus.hide_invite_button(params)
 | Crazy Games       | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
+| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
 
 Features exclusive to Yandex games.
 
@@ -517,7 +520,7 @@ WebBus.set_leaderboard_score(name_leaderboard, score, extra_data)
 | Crazy Games       | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
+| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
 
 
 Init yandex payments
@@ -619,7 +622,7 @@ print(feedback_request.feedback_sent) # bool
 | Crazy Games       | ![❌](https://img.shields.io/badge/Not_Supported-red) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_progress-yellow) |
+| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
 
 Check if the player can show a prompt:
 
@@ -662,10 +665,30 @@ WebBus.unfocused.connect(func():
 	get_tree().set_pause(true))
 ```
 
-## Main Screen Menu
+## Additional Features
 
-In the main screen menu you can set your settings.
+### Archiving
+In the WebBus tab of the main menu, you can enable automatic archiving of the exported web build and specify a name for the archive. 
 
->You can enable automatic build archiving, but make sure the export folder does not contain any extraneous files.
+>[!WARNING]
+>Make sure there are no third-party files in the export folder.
 
-![main screen menu](mainscreen.png)
+### Crazy Games Banner
+In the WebBus tab of the main menu, you can specify the size and position of the banner for Crazy Games.
+
+### VK Send Event
+You can send any event supported by VK Bridge using the `WebBus.tools.VKRequest` class.  
+Refer to the VK documentation for the current list of available events. 
+
+```gdscript
+var request := WebBus.tools.VKRequest.new()
+request.send("VKWebAppShowNativeAds", {"ad_format": "interstitial"}, callback)
+
+func callback(args:Dictionary) -> void:
+	if args.result:
+		print("success")
+	else:
+		print("error")
+```
+
+
