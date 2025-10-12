@@ -43,7 +43,14 @@ func to_js(data:Variant) -> Variant:
 		return js_object
 	return data
 	
-	
+
+func get_language_by_code(code:String) -> String:
+	var file = FileAccess.open("res://addons/webbus/tools/language_codes.json", FileAccess.READ)
+	var code_dict:Dictionary = JSON.parse_string(file.get_as_text())
+	file.close()
+	return code_dict[code]
+
+
 class VKRequest:
 	var callback:Callable
 	var configs:Dictionary
