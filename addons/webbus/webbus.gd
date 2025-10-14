@@ -846,17 +846,8 @@ func start_loading() -> void:
 
 func get_platform() -> String:
 	if OS.get_name() == "Web":
-		match platform:
-			Platform.YANDEX:
-				return "yandex"
-			Platform.CRAZY:
-				return "crazy_games"
-			Platform.GAMEDISTRIBUTION:
-				return "game_distribution"
-			Platform.POKI:
-				return "poki"
-			_:
-				return "unknown"
+		if !system_info.is_empty():
+			return system_info.get("platform", "unknown")
 	return "unknown"
 
 
@@ -864,7 +855,6 @@ func get_language() -> String:
 	if OS.get_name() == "Web":
 		if !system_info.is_empty():
 			return system_info.get("language", "unknown")
-		return "unknown"
 	return "unknown"
 
 
@@ -872,7 +862,6 @@ func get_type_device() -> String:
 	if OS.get_name() == "Web":
 		if !system_info.is_empty():
 			return system_info.get("device_type", "unknown")
-		return "unknown"
 	return "unknown"
 
 #endregion
