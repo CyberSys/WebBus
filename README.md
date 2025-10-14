@@ -37,7 +37,9 @@ The plugin is designed to simplify the development of HTML5 games and applicatio
 
 1. Download the plugin as a ZIP archive.
 2. Extract the ZIP archive and move the `addons/` folder it contains into your project folder.
-3. Enable the plugin in **Project > Project Settings > Plugins**.
+   >![NOTE]
+   > Also you can install the plagin from [Asset Library](https://godotengine.org/asset-library/asset/2841)
+4. Enable the plugin in **Project > Project Settings > Plugins**.
 
 
 ## Usage
