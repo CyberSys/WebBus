@@ -2,7 +2,7 @@
 ## Platform 
 Getting name of platform:
 
-The function returns a `String`. Possible values are: "yandex", "crazy_games", "poki"
+The function returns a `String`. Possible values are: `yandex`, `crazy_games`, `poki`, `vk`.
 
 | Platform          | Supported |
 |-------------------|-----------|
@@ -18,7 +18,7 @@ var platform_name = WebBus.get_platform()
 
 Getting type of device:
 
-The function returns a `String`, possible values: "desktop", "tablet", "mobile".
+The function returns a `String`, possible values: `desktop`, `tablet`, `mobile`.
 
 | Platform          | Supported |
 |-------------------|-----------|
