@@ -1,0 +1,45 @@
+site_name: WebBus Plugin Docs
+site_description: Documantation of plugin WebBus for Godot 4
+site_author: Talkafk
+repo_url: https://github.com/talkafk/WebBus
+theme:
+  name: material
+  features:
+    - content.code.copy
+  palette: 
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+nav:
+  - Index: index.md
+  - Usage:
+      - Advertisement: usage/advertisement.md
+  - Additional Features:
+      - Archiving: additional_features/archiving.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - tables
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
