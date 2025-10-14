@@ -20,18 +20,18 @@ The plugin is designed to simplify the development of HTML5 games and applicatio
 
 | Feature            | Crazy Games | Yandex Games | Poki    | VK     |
 |--------------------|:-----------:|:------------:|:-------:|:------:|
-| [Fullscreen Advertisement](#fullscreen-advertisement)     | ✅          | ✅           | ✅    | ✅    |       
-| [Rewarded Advertisement](#rewarded-advertisement)       | ✅          | ✅           | ✅    | ✅    |  
-| [Banner Advertisement](#banner-advertisement)       | ✅          | ✅           | ❌    | ✅    |
-| [User Info](#user)      | ✅          | ✅           | ❌    | ✅    |
-| [Authentication](#authentication)      | ✅          | ✅           | ❌    | ✍️    |
-| [User Data](#user-data)      | ✅          | ✅           | ❌    | ✍️    |
-| [Leaderboards](#leaderboards)      | ❌          | ✅           | ❌    | ✍️    |
-| [Payments](#payments)          | ❌          | ✅           | ❌    | ✍️    |
-| [Invite Links](#invite-links)  | ✅          | ❌           | ✅    | ❌    |
-| [Invite Button](#invite-button)  | ✅          | ❌           | ❌    | ❌    |
-| [Server time](#server-time)       | ❌          | ✅           | ❌    | ❌    |
-| [Desktop shortcut](#desktop-shortcut)   | ❌          | ✅           | ❌    | ✍️    |
+| Fullscreen Advertisement     | ✅          | ✅           | ✅    | ✅    |       
+| Rewarded Advertisement       | ✅          | ✅           | ✅    | ✅    |  
+| Banner Advertisement       | ✅          | ✅           | ❌    | ✅    |
+| User Info      | ✅          | ✅           | ❌    | ✅    |
+| Authentication      | ✅          | ✅           | ❌    | ✍️    |
+| User Data     | ✅          | ✅           | ❌    | ✍️    |
+| Leaderboards      | ❌          | ✅           | ❌    | ✍️    |
+| Payments          | ❌          | ✅           | ❌    | ✍️    |
+| Invite Links  | ✅          | ❌           | ✅    | ❌    |
+| Invite Button  | ✅          | ❌           | ❌    | ❌    |
+| Server time       | ❌          | ✅           | ❌    | ❌    |
+| Desktop shortcut   | ❌          | ✅           | ❌    | ✍️    |
 
 ## Installation
 
