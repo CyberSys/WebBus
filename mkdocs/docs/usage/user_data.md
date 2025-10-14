@@ -17,9 +17,12 @@ WebBus.set_data(data)
 Getting data:
 
 ```gdscript
-var keys:Array = ["Key"]
-var result = await WebBus.get_data(keys)
+var result = await WebBus.get_data("Key") # One key
 print(result) # {"Key": "Value"}
+
+var result = await WebBus.get_data(["Key1", "Key2"]) # Several keys
+print(result) # {"Key1": "Value1", "Key2": "Value2"}
+
 ```
 
 !!! NOTE 
@@ -37,7 +40,10 @@ WebBus.set_stats(data)
 Getting stats:
 
 ```gdscript
-var keys:Array = ["Key"]
-var result = await WebBus.get_stats(keys)
-print(result) # {"Key": 12345.0}
+var result = await WebBus.get_stats("Key") # One key
+print(result) # {"Key": 1234.5}
+
+var result = await WebBus.get_stats(["Key1", "Key2"]) # Several keys
+print(result) # {"Key1": 1234.5, "Key2": 5432.1}
+
 ```
