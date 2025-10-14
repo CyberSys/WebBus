@@ -42,6 +42,6 @@ The plugin is designed to simplify the development of HTML5 games and applicatio
 
 ## Usage
 
-For more information look [Documentaion]("https://talkafk.github.io/WebBus") 
+For more information look ![Documentaion]("https://talkafk.github.io/WebBus") 
 
 You can explore the demo scene for a better understanding of how to use the plugin.
