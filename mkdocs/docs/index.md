@@ -1,19 +1,25 @@
-# WebBus Docs
+
 ![Godot 4.x](https://img.shields.io/badge/Godot-4.x-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ![icon](icon64x64.png)
 
-WebBus is a plugin for the Godot engine. Use one plugin for several web platform SDKs.
+This is the documentation for the WebBus plugin for Godot Engine.
+The plugin is designed to simplify the development of HTML5 games and applications in Godot.
+It allows you to build your project once and use the same build across multiple web platforms without modification.
 
-This version is for Godot 4.x.
+
+!!! Warning
+    The plugin does not support compatibility with Godot 3 — it is only compatible with Godot 4.
 
 
 ## Supported platforms
 - Crazy games
 - Yandex games
 - Poki
-- VK 
+- VK (partial)
+
+## List of features
 
 | Feature            | Crazy Games | Yandex Games | Poki    | VK     |
 |--------------------|:-----------:|:------------:|:-------:|:------:|

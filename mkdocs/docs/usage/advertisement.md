@@ -1,6 +1,6 @@
-### Advertisement
 
-#### Fullscreen Advertisement
+
+## Fullscreen Advertisement
 
 Calling full-screen advertisement:
 
@@ -16,7 +16,7 @@ Calling full-screen advertisement:
 WebBus.show_ad()
 ```
 
-#### Rewarded Advertisement
+## Rewarded Advertisement
 
 Calling rewarded advertisement:
 
@@ -42,14 +42,14 @@ For full-screen and rewarded advertisements, there are 4 callback signals:
 | VK                | ![✔️](https://img.shields.io/badge/Supported-green) |
 
 ```gdscript
-signal reward_added 
-signal ad_closed
-signal ad_error
-signal ad_started
+WebBus.reward_added 
+WebBus.ad_closed
+WebBus.ad_error
+WebBus.ad_started
 ```
 
 
-#### Full example
+### Full example
 
 ```gdscript
 extends Node
@@ -79,7 +79,7 @@ func reward_added():
     $Player.add_gold(10)
 
 ```
-#### Banner advertisement
+## Banner advertisement
 
 
 
