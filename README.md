@@ -43,7 +43,7 @@ This version is for Godot 4.x.
 | [Fullscreen Advertisement](#fullscreen-advertisement)     | ✅          | ✅           | ✅    | ✅    |       
 | [Rewarded Advertisement](#rewarded-advertisement)       | ✅          | ✅           | ✅    | ✅    |  
 | [Banner Advertisement](#banner-advertisement)       | ✅          | ✅           | ❌    | ✅    |
-| [User Info](#user)      | ✅          | ✅           | ❌    | ✍️    |
+| [User Info](#user)      | ✅          | ✅           | ❌    | ✅    |
 | [Authentication](#authentication)      | ✅          | ✅           | ❌    | ✍️    |
 | [User Data](#user-data)      | ✅          | ✅           | ❌    | ✍️    |
 | [Leaderboards](#leaderboards)      | ❌          | ✅           | ❌    | ✍️    |
@@ -271,7 +271,7 @@ WebBus.ready()
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green) |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red) |
-| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
+| VK                | ![✔️](https://img.shields.io/badge/Supported-green) |
 
 `user_info` dictionary contains player's username and avatar link
 

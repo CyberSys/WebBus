@@ -3,7 +3,7 @@ extends Control
 func _ready():
 	if !WebBus.is_init:
 		await WebBus.inited
-	print(WebBus.get_language())
+	print(WebBus.user_info)
 	WebBus.ad_closed.connect(ad_closed)
 	WebBus.ad_error.connect(ad_error)
 	WebBus.ad_started.connect(ad_started)

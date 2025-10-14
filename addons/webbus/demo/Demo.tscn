@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bpogarfjr8ys4"]
 
-[ext_resource type="Script" uid="uid://2e4elt4khhck" path="res://addons/webbus/Demo/Demo.gd" id="1_so7c8"]
-[ext_resource type="AudioStream" uid="uid://kperu0kstmja" path="res://addons/webbus/Demo/good-night-lofi-cozy-chill-music-160166.mp3" id="2_bh7q7"]
+[ext_resource type="Script" uid="uid://2e4elt4khhck" path="res://addons/webbus/demo/Demo.gd" id="1_so7c8"]
+[ext_resource type="AudioStream" uid="uid://kperu0kstmja" path="res://addons/webbus/demo/good-night-lofi-cozy-chill-music-160166.mp3" id="2_bh7q7"]
 
 [node name="Demo" type="Control"]
 layout_mode = 3

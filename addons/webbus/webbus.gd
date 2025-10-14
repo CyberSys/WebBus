@@ -1,4 +1,7 @@
 extends Node
+## Singlton class[br]
+## [br]
+## Docs: [url]https://github.com/talkafk/WebBus[/url]
 
 
 signal inited
@@ -34,50 +37,6 @@ var vkBridge:JavaScriptObject
 
 var system_info := {}
 var user_info := {}
-
-const LANGUAGE_CODES = {'AF': 'uz', 'AX': 'sv', 'AL': 'en', 'DZ': 'kab',
- 'AS': 'en', 'AD': 'en', 'AO': 'pt', 'AI': 'es', 'AG': 'es', 'AR': 'es',
- 'AM': 'hy', 'AW': 'es', 'AU': 'en', 'AT': 'de', 'AZ': 'az', 'BS': 'es',
- 'BH': 'ar', 'BD': 'en', 'BB': 'es', 'BY': 'ru', 'BE': 'wa', 'BZ': 'es',
- 'BJ': 'yo', 'BM': 'es', 'BT': 'dz', 'BO': 'es', 'BA': 'sr', 'BW': 'tn',
- 'BR': 'es', 'IO': 'en', 'VG': 'es', 'BN': 'ms', 'BG': 'en', 'BF': 'ff',
- 'BI': 'rn', 'KH': 'km', 'CM': 'yav', 'CA': 'es', 'IC': 'es', 'CV': 'pt',
- 'BQ': 'es', 'KY': 'es', 'CF': 'sg', 'EA': 'es', 'TD': 'fr', 'CL': 'es',
- 'CN': 'ug', 'CX': 'en', 'CC': 'en', 'CO': 'es', 'KM': 'fr', 'CG': 'ln',
- 'CD': 'sw', 'CK': 'en', 'CR': 'es', 'CI': 'fr', 'HR': 'en', 'CU': 'es',
- 'CW': 'es', 'CY': 'tr', 'CZ': 'en', 'DK': 'fo', 'DG': 'en', 'DJ': 'so',
- 'DM': 'es', 'DO': 'es', 'EC': 'es', 'EG': 'ar', 'SV': 'es', 'GQ': 'es',
- 'ER': 'ti', 'EE': 'et', 'SZ': 'ss', 'ET': 'wal', '150': 'en', 'FK': 'es',
- 'FO': 'fo', 'FJ': 'en', 'FI': 'sv', 'FR': 'gsw', 'GF': 'es', 'PF': 'fr',
- 'GA': 'fr', 'GM': 'ff', 'GE': 'os', 'DE': 'hsb', 'GH': 'ha', 'GI': 'en',
- 'GR': 'el', 'GL': 'es', 'GD': 'es', 'GP': 'es', 'GU': 'en', 'GT': 'es',
- 'GG': 'en', 'GW': 'pt', 'GN': 'nqo', 'GY': 'es', 'HT': 'es', 'HN': 'es',
- 'HK': 'en', 'HU': 'hu', 'IS': 'is', 'IN': 'ur', 'ID': 'jv', 'IR': 'fa',
- 'IQ': 'syr', 'IE': 'ga', 'IM': 'gv', 'IL': 'he', 'IT': 'scn', 'JM': 'en',
- 'JP': 'ja', 'JE': 'en', 'JO': 'ar', 'KZ': 'ru', 'KE': 'teo', 'KI': 'en',
- 'XK': 'sr', 'KW': 'ar', 'KG': 'ru', 'LA': 'lo', '419': 'es', 'LV': 'lv',
- 'LB': 'ar', 'LS': 'st', 'LR': 'vai', 'LY': 'ar', 'LI': 'gsw', 'LT': 'lt',
- 'LU': 'pt', 'MO': 'pt', 'MG': 'mg', 'MW': 'ny', 'MY': 'ta', 'MV': 'en',
- 'ML': 'ses', 'MT': 'mt', 'MH': 'en', 'MQ': 'es', 'MR': 'ff', 'MU': 'mfe',
- 'YT': 'fr', 'MX': 'es', 'FM': 'en', 'MD': 'ru', 'MC': 'fr', 'MN': 'mn',
- 'ME': 'sr', 'MS': 'es', 'MA': 'shi', 'MZ': 'seh', 'MM': 'en', 'NA': 'naq',
- 'NR': 'en', 'NP': 'ne', 'NL': 'fy', 'NC': 'fr', 'NZ': 'mi', 'NI': 'es',
- 'NE': 'dje', 'NG': 'yo', 'NU': 'en', 'NF': 'en', 'KP': 'ko', 'MK': 'mk',
- 'MP': 'en', 'NO': 'nn', 'OM': 'ar', 'PK': 'ur', 'PW': 'en', 'PS': 'ar',
- 'PA': 'es', 'PG': 'en', 'PY': 'es', 'PE': 'es', 'PH': 'es', 'PN': 'en',
- 'PL': 'pl', 'PT': 'pt', 'PR': 'es', 'QA': 'ar', 'RE': 'fr', 'RO': 'ro',
- 'RU': 'ru', 'RW': 'rw', 'WS': 'en', 'SM': 'it', 'ST': 'pt', 'SA': 'en',
- 'SN': 'wo', 'RS': 'sr', 'SC': 'fr', 'SL': 'ff', 'SG': 'ta', 'SX': 'es',
- 'SK': 'sk', 'SI': 'sl', 'SB': 'en', 'SO': 'so', 'ZA': 'zu', 'KR': 'ko',
- 'SS': 'nus', 'ES': 'es', 'LK': 'ta', 'BL': 'es', 'SH': 'en', 'KN': 'es',
- 'LC': 'es', 'MF': 'es', 'PM': 'es', 'VC': 'es', 'SD': 'en', 'SR': 'es',
- 'SJ': 'nb', 'SE': 'sv', 'CH': 'wae', 'SY': 'syr', 'TW': 'trv', 'TJ': 'tg',
- 'TZ': 'vun', 'TH': 'th', 'TL': 'pt', 'TG': 'fr', 'TK': 'en', 'TO': 'to',
- 'TT': 'es', 'TN': 'fr', 'TR': 'tr', 'TM': 'tk', 'TC': 'es', 'TV': 'en',
- 'UM': 'en', 'VI': 'es', 'UG': 'teo', 'UA': 'uk', 'AE': 'en', 'GB': 'cy',
- 'US': 'en', 'UY': 'es', 'UZ': 'uz', 'VU': 'fr', 'VA': 'it', 'VE': 'es',
- 'VN': 'vi', 'WF': 'fr', 'EH': 'ar', '001': 'yi', 'YE': 'ar', 'ZM': 'en',
- 'ZW': 'sn'}
 
 enum Platform {YANDEX, CRAZY, GAMEDISTRIBUTION, POKI, VK}
 
@@ -121,8 +80,8 @@ func _ready() -> void:
 					return
 			match platform:
 				Platform.YANDEX:
-					var callbacks = JavaScriptBridge.create_object("Object")
-					var rewardcallbacks = JavaScriptBridge.create_object("Object")
+					var callbacks := JavaScriptBridge.create_object("Object")
+					var rewardcallbacks := JavaScriptBridge.create_object("Object")
 					callbacks["onClose"] = _adFinishedCallback
 					callbacks["onError"] = _adErrorCallback
 					callbacks["onOffline"] = _adErrorCallback
@@ -159,7 +118,7 @@ func _ready() -> void:
 					while not CrazySDK:
 						CrazySDK = window.CrazyGames.SDK
 						await get_tree().create_timer(0.1).timeout
-					var callback_init = JavaScriptBridge.create_callback(func(args):
+					var callback_init := JavaScriptBridge.create_callback(func(args):
 						_inited.emit())
 					CrazySDK.init().then(callback_init)
 					await _inited
@@ -174,7 +133,7 @@ func _ready() -> void:
 					_SDK_inited.emit()
 					print('gd init gamedistribution')
 				Platform.POKI:
-					var _callback = JavaScriptBridge.create_callback(func(args):
+					var _callback := JavaScriptBridge.create_callback(func(args):
 						_inited.emit()
 					)
 					print("waiting sdk..")
@@ -187,7 +146,7 @@ func _ready() -> void:
 					_SDK_inited.emit()
 					print('gd init poki')
 				Platform.VK:
-					var _callback = JavaScriptBridge.create_callback(func(args):
+					var _callback := JavaScriptBridge.create_callback(func(args):
 						if args[0].result:
 							_inited.emit()
 						else:
@@ -219,8 +178,8 @@ func _get_info() -> void:
 		Platform.CRAZY: 
 			while not CrazySDK:
 				await _SDK_inited
-			var c_code = CrazySDK.user.systemInfo.countryCode
-			lang = LANGUAGE_CODES[c_code]
+			var c_code :String = CrazySDK.user.systemInfo.countryCode
+			lang = tools.get_language_by_code(c_code)
 			type = CrazySDK.user.systemInfo.device.type
 		_:
 			lang = "unknown"
@@ -231,7 +190,7 @@ func _get_info() -> void:
 
 signal _getted_player(player:JavaScriptObject)
 
-var _callback_get_player = JavaScriptBridge.create_callback(func(args):
+var _callback_get_player := JavaScriptBridge.create_callback(func(args):
 	_getted_player.emit(args[0])
 	)
 var js_player:JavaScriptObject
@@ -265,17 +224,17 @@ func _get_user_info():
 	
 	
 var is_focus:bool = true
-var _callback_w_p = JavaScriptBridge.create_callback(func(_args):
+var _callback_w_p := JavaScriptBridge.create_callback(func(_args):
 	unfocused.emit()
 	is_focus = false
 	)
-var _callback_w_f = JavaScriptBridge.create_callback(func(_args):
+var _callback_w_f := JavaScriptBridge.create_callback(func(_args):
 	focused.emit()
 	is_focus = true
 	)
 	
-var document = JavaScriptBridge.get_interface("document")
-var _listner = JavaScriptBridge.create_callback(func(_args):
+var document := JavaScriptBridge.get_interface("document")
+var _listner := JavaScriptBridge.create_callback(func(_args):
 	if document.hidden and is_focus:
 		unfocused.emit()
 	elif !document.hidden and !is_focus:
@@ -560,7 +519,7 @@ func ready():
 				await _SDK_inited
 			pass #TODO
 		Platform.VK:
-			pass #TODO
+			push_warning("Platform not supported")
 		_:
 			push_warning("Platform not supported")
 
@@ -570,11 +529,11 @@ func ready():
 #region Data
 signal _auth(success:bool)
 
-var _callback_auth_dialog = JavaScriptBridge.create_callback(func(args):
+var _callback_auth_dialog := JavaScriptBridge.create_callback(func(args):
 	_auth.emit(true)
 	)
 	
-var _callback_auth_dialog_error = JavaScriptBridge.create_callback(func(args):
+var _callback_auth_dialog_error := JavaScriptBridge.create_callback(func(args):
 	_auth.emit(false)
 	)
 
@@ -623,11 +582,11 @@ func set_data(data:Dictionary) -> void:
 
 signal _getted_data
 
-var _callback_getting_data = JavaScriptBridge.create_callback(func(args):
+var _callback_getting_data := JavaScriptBridge.create_callback(func(args):
 	_getted_data.emit(tools.js_to_dict(args[0], false))
 	)
 	
-var _callback_getting_data_error = JavaScriptBridge.create_callback(func(args):
+var _callback_getting_data_error := JavaScriptBridge.create_callback(func(args):
 	push_error("WebBus error:", tools.js_to_dict(args[0]))
 	_getted_data.emit({})
 	)
@@ -665,11 +624,11 @@ func set_stats(data:Dictionary) -> void:
 
 signal _getted_stats
 
-var _callback_getting_stats = JavaScriptBridge.create_callback(func(args):
+var _callback_getting_stats := JavaScriptBridge.create_callback(func(args):
 	_getted_stats.emit(tools.js_to_dict(args[0], false))
 	)
 	
-var _callback_getting_stats_error = JavaScriptBridge.create_callback(func(args):
+var _callback_getting_stats_error := JavaScriptBridge.create_callback(func(args):
 	push_error("WebBus error:", tools.js_to_dict(args[0]))
 	_getted_stats.emit({})
 	)
@@ -694,7 +653,7 @@ func get_stats(keys:Array) -> Dictionary:
 #region Yandex
 
 signal leaderboard_info_recieved(result:Dictionary)
-var _callback_info_recieved = JavaScriptBridge.create_callback(_leaderboard_info_recieved)
+var _callback_info_recieved := JavaScriptBridge.create_callback(_leaderboard_info_recieved)
 
 func get_leaderboard_info(leaderboard:String):
 	match platform:
@@ -713,7 +672,7 @@ func _leaderboard_info_recieved(info):
 
 signal leaderboard_score_setted
 
-var _callback_leaderboard_score_setted = JavaScriptBridge.create_callback(func(args):
+var _callback_leaderboard_score_setted := JavaScriptBridge.create_callback(func(args):
 					leaderboard_score_setted.emit())
 
 func set_leaderboard_score(leaderboard:String, score: int, extra_data:String = "") -> void:
@@ -730,14 +689,14 @@ func set_leaderboard_score(leaderboard:String, score: int, extra_data:String = "
 
 
 signal leaderboard_player_entry_recieved(result:Dictionary)
-var callback_player_entry_recieved = JavaScriptBridge.create_callback(_leaderboard_player_entry_recieved)
+var _callback_player_entry_recieved := JavaScriptBridge.create_callback(_leaderboard_player_entry_recieved)
 
 func get_leaderboard_player_entry(leaderboard:String) -> Dictionary:
 	match platform:
 		Platform.YANDEX:
 			while not YandexSDK:
 				await _SDK_inited
-			leaderboards.getPlayerEntry(leaderboard).then(callback_player_entry_recieved)
+			leaderboards.getPlayerEntry(leaderboard).then(_callback_player_entry_recieved)
 			return await leaderboard_player_entry_recieved
 		_:
 			push_warning("Platform not supported")
@@ -748,7 +707,7 @@ func _leaderboard_player_entry_recieved(info) -> void:
 
 
 signal leaderboard_entries_recieved
-var callback_entries_recieved = JavaScriptBridge.create_callback(_leaderboard_entries_recieved)
+var _callback_entries_recieved := JavaScriptBridge.create_callback(_leaderboard_entries_recieved)
 
 func get_leaderboard_entries(leaderboard:String, include_user:bool = true, quantity_around:int = 5, quantity_top:int = 5) -> Dictionary:
 	match platform:
@@ -759,7 +718,7 @@ func get_leaderboard_entries(leaderboard:String, include_user:bool = true, quant
 			config["includeUser"] = include_user
 			config["quantityAround"] = quantity_around
 			config["quantityTop"] = quantity_top
-			leaderboards.getEntries(leaderboard, config).then(callback_entries_recieved)
+			leaderboards.getEntries(leaderboard, config).then(_callback_entries_recieved)
 			return await leaderboard_entries_recieved
 		_:
 			push_warning("Platform not supported")
@@ -782,7 +741,7 @@ func get_server_time() -> int:
 
 signal can_feedback(result:Dictionary)
 
-var _callback_can_rewiew = JavaScriptBridge.create_callback(func(args):
+var _callback_can_rewiew := JavaScriptBridge.create_callback(func(args):
 	can_feedback.emit(tools.js_to_dict(args[0])))
 
 func can_rewiew() -> Dictionary:
@@ -799,7 +758,7 @@ func can_rewiew() -> Dictionary:
 
 signal request_feedback(result:Dictionary)
 
-var _callback_request_rewiew = JavaScriptBridge.create_callback(func(args):
+var _callback_request_rewiew := JavaScriptBridge.create_callback(func(args):
 	request_feedback.emit(tools.js_to_dict(args[0])))	
 
 func request_review() -> Dictionary:
@@ -816,7 +775,7 @@ func request_review() -> Dictionary:
 
 signal could_show_prompt(result:Dictionary)
 
-var _callback_can_show_prompt = JavaScriptBridge.create_callback(func(args):
+var _callback_can_show_prompt := JavaScriptBridge.create_callback(func(args):
 	could_show_prompt.emit(tools.js_to_dict(args[0])))
 
 func can_show_prompt() -> Dictionary:
@@ -832,7 +791,7 @@ func can_show_prompt() -> Dictionary:
 
 signal showed_prompt(result:Dictionary)
 
-var callback_show_prompt = JavaScriptBridge.create_callback(func(args):
+var _callback_show_prompt := JavaScriptBridge.create_callback(func(args):
 	showed_prompt.emit(tools.js_to_dict(args[0])))
 
 func show_prompt() -> Dictionary:
@@ -840,7 +799,7 @@ func show_prompt() -> Dictionary:
 		Platform.YANDEX:
 			while not YandexSDK:
 				await _SDK_inited
-			YandexSDK.feedback.showPrompt().then(callback_show_prompt)
+			YandexSDK.feedback.showPrompt().then(_callback_show_prompt)
 			return await showed_prompt
 		_:
 			push_warning("Platform not supported")
@@ -911,7 +870,7 @@ func get_type_device() -> String:
 signal invite_link_getted(result:String)
 
 func invite_link(params:Dictionary) -> String:
-	var conf = JavaScriptBridge.create_object("Object")
+	var conf := JavaScriptBridge.create_object("Object")
 	for key in params.keys():
 		conf[key] = params[key]
 	match platform:
@@ -922,7 +881,7 @@ func invite_link(params:Dictionary) -> String:
 		Platform.POKI:
 			while not PokiSDK:
 				await _SDK_inited
-			var callback = JavaScriptBridge.create_callback(func(args):
+			var callback := JavaScriptBridge.create_callback(func(args):
 				invite_link_getted.emit(args[0]))
 			PokiSDK.shareableURL(conf).then(callback)
 			return await invite_link_getted
@@ -947,7 +906,7 @@ func get_invite_param(param:Variant) -> Variant:
 
 
 func show_invite_button(params:Dictionary) -> void:
-	var conf = JavaScriptBridge.create_object("Object")
+	var conf := JavaScriptBridge.create_object("Object")
 	for key in params.keys():
 		conf[key] = params[key]
 	match platform:
@@ -1000,7 +959,7 @@ var _purchase_callback := JavaScriptBridge.create_callback(func(args):
 	)
 
 var _purchase_error_callback := JavaScriptBridge.create_callback(func(args):
-	var message
+	var message:String
 	if args[0].code == "payment_user_canceled":
 		message = "Payment user canceled"
 	else:
