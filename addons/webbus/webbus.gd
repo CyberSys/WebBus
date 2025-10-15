@@ -165,7 +165,7 @@ func _ready() -> void:
 			is_init = true
 			inited.emit()
 				
-signal _getted_info
+signal _getted_info(data)
 				
 func _get_info() -> void:
 	var lang:String
@@ -186,13 +186,12 @@ func _get_info() -> void:
 			while not vkBridge:
 				await _SDK_inited
 			var _callback := JavaScriptBridge.create_callback(func(args):
-				var res = args[0]
-				lang = res.vk_language
-				type = res.vk_platform
-				_getted_info.emit()
+				_getted_info.emit(args[0])
 				)
 			vkBridge.send("VKWebAppGetLaunchParams").then(_callback)
-			await _getted_info
+			var res = await _getted_info
+			lang = res.vk_language
+			type = res.vk_platform.split("_")[0]
 		_:
 			lang = "unknown"
 			type = "unknown"
