@@ -35,7 +35,7 @@ The plugin is designed to simplify the development of HTML5 games and applicatio
 
 ## Installation
 
-1. Download the plugin as a ZIP archive.
+1. Download the plugin as a ZIP archive from [release page](https://github.com/talkafk/WebBus/releases/latest).
 2. Extract the ZIP archive and move the `addons/` folder it contains into your project folder.
    
    > You can also install the plugin from the [Asset Library](https://godotengine.org/asset-library/asset/2841).
