@@ -2,7 +2,7 @@
 ## Platform 
 Getting name of platform:
 
-The function returns a `String`. Possible values are: "yandex", "crazy_games", "poki"
+The function returns a `String`. Possible values are: `yandex`, `crazy_games`, `poki`, `vk`.
 
 | Platform          | Supported |
 |-------------------|-----------|
@@ -18,14 +18,14 @@ var platform_name = WebBus.get_platform()
 
 Getting type of device:
 
-The function returns a `String`, possible values: "desktop", "tablet", "mobile".
+The function returns a `String`, possible values: `desktop`, `tablet`, `mobile`.
 
 | Platform          | Supported |
 |-------------------|-----------|
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green)    |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green)    |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red)  |
-| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
+| VK                | ![✔️](https://img.shields.io/badge/Supported-green)    |
 
 
 ```gdscript
@@ -42,7 +42,7 @@ The function returns 2-letter language code.
 | Crazy Games       | ![✔️](https://img.shields.io/badge/Supported-green)    |
 | Yandex Games      | ![✔️](https://img.shields.io/badge/Supported-green)    |
 | Poki              | ![❌](https://img.shields.io/badge/Not_Supported-red)  |
-| VK                | ![✍️](https://img.shields.io/badge/In_Progress-yellow) |
+| VK                | ![✔️](https://img.shields.io/badge/Supported-green)    |
 
 ```gdscript
 var language = WebBus.get_language()

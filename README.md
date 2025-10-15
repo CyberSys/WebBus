@@ -18,27 +18,27 @@ The plugin is designed to simplify the development of HTML5 games and applicatio
 
 ## Short list of features
 
-| Feature            | Crazy Games | Yandex Games | Poki    | VK     |
-|--------------------|:-----------:|:------------:|:-------:|:------:|
-| Fullscreen Advertisement     | ✅          | ✅           | ✅    | ✅    |       
-| Rewarded Advertisement       | ✅          | ✅           | ✅    | ✅    |  
-| Banner Advertisement       | ✅          | ✅           | ❌    | ✅    |
-| User Info      | ✅          | ✅           | ❌    | ✅    |
-| Authentication      | ✅          | ✅           | ❌    | ✍️    |
-| User Data     | ✅          | ✅           | ❌    | ✍️    |
-| Leaderboards      | ❌          | ✅           | ❌    | ✍️    |
-| Payments          | ❌          | ✅           | ❌    | ✍️    |
-| Invite Links  | ✅          | ❌           | ✅    | ❌    |
-| Invite Button  | ✅          | ❌           | ❌    | ❌    |
-| Server time       | ❌          | ✅           | ❌    | ❌    |
-| Desktop shortcut   | ❌          | ✅           | ❌    | ✍️    |
+| Feature                      | Crazy Games | Yandex Games | Poki    | VK        |
+|------------------------------|:-----------:|:------------:|:-------:|:---------:|
+| Fullscreen Advertisement     | ✅          | ✅           | ✅      | ✅        |
+| Rewarded Advertisement       | ✅          | ✅           | ✅      | ✅        |
+| Banner Advertisement         | ✅          | ✅           | ❌      | ✅        |
+| User Info                    | ✅          | ✅           | ❌      | ✅        |
+| Authentication               | ✅          | ✅           | ❌      | ✍️        |
+| User Data                    | ✅          | ✅           | ❌      | ✅        |
+| Leaderboards                 | ❌          | ✅           | ❌      | ✍️        |
+| Payments                     | ❌          | ✅           | ❌      | ✍️        |
+| Invite Links                 | ✅          | ❌           | ✅      | ❌        |
+| Invite Button                | ✅          | ❌           | ❌      | ❌        |
+| Server time                  | ❌          | ✅           | ❌      | ❌        |
+| Desktop shortcut             | ❌          | ✅           | ❌      | ✍️        |
 
 ## Installation
 
 1. Download the plugin as a ZIP archive.
 2. Extract the ZIP archive and move the `addons/` folder it contains into your project folder.
    
-   > Also you can install the plugin from [Asset Library](https://godotengine.org/asset-library/asset/2841).
+   > You can also install the plugin from the [Asset Library](https://godotengine.org/asset-library/asset/2841).
    
 3. Enable the plugin in **Project > Project Settings > Plugins**.
 
