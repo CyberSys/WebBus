@@ -18,20 +18,20 @@ The plugin is designed to simplify the development of HTML5 games and applicatio
 
 ## Short list of features
 
-| Feature            | Crazy Games | Yandex Games | Poki    | VK     |
-|--------------------|:-----------:|:------------:|:-------:|:------:|
-| Fullscreen Advertisement     | ✅          | ✅           | ✅    | ✅    |       
-| Rewarded Advertisement       | ✅          | ✅           | ✅    | ✅    |  
-| Banner Advertisement       | ✅          | ✅           | ❌    | ✅    |
-| User Info      | ✅          | ✅           | ❌    | ✅    |
-| Authentication      | ✅          | ✅           | ❌    | ✍️    |
-| User Data     | ✅          | ✅           | ❌    | ✍️    |
-| Leaderboards      | ❌          | ✅           | ❌    | ✍️    |
-| Payments          | ❌          | ✅           | ❌    | ✍️    |
-| Invite Links  | ✅          | ❌           | ✅    | ❌    |
-| Invite Button  | ✅          | ❌           | ❌    | ❌    |
-| Server time       | ❌          | ✅           | ❌    | ❌    |
-| Desktop shortcut   | ❌          | ✅           | ❌    | ✍️    |
+| Feature                      | Crazy Games | Yandex Games | Poki    | VK        |
+|------------------------------|:-----------:|:------------:|:-------:|:---------:|
+| Fullscreen Advertisement     | ✅          | ✅           | ✅      | ✅        |
+| Rewarded Advertisement       | ✅          | ✅           | ✅      | ✅        |
+| Banner Advertisement         | ✅          | ✅           | ❌      | ✅        |
+| User Info                    | ✅          | ✅           | ❌      | ✅        |
+| Authentication               | ✅          | ✅           | ❌      | ✍️        |
+| User Data                    | ✅          | ✅           | ❌      | ✅        |
+| Leaderboards                 | ❌          | ✅           | ❌      | ✍️        |
+| Payments                     | ❌          | ✅           | ❌      | ✍️        |
+| Invite Links                 | ✅          | ❌           | ✅      | ❌        |
+| Invite Button                | ✅          | ❌           | ❌      | ❌        |
+| Server time                  | ❌          | ✅           | ❌      | ❌        |
+| Desktop shortcut             | ❌          | ✅           | ❌      | ✍️        |
 
 ## Installation
 

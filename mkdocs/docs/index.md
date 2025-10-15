@@ -28,7 +28,7 @@ It allows you to build your project once and use the same build across multiple 
 | [Rewarded Advertisement](usage/advertisement.md/#rewarded-advertisement)       | ✅          | ✅           | ✅    | ✅    |  
 | [Banner Advertisement](usage/advertisement.md/#banner-advertisement)       | ✅          | ✅           | ❌    | ✅    |
 | [Authentication](usage/authentication.md)      | ✅          | ✅           | ❌    | ✍️    |
-| [User Data](usage/user_data.md)      | ✅          | ✅           | ❌    | ✍️    |
+| [User Data](usage/user_data.md)      | ✅          | ✅           | ❌    | ✅    |
 | [Leaderboards](usage/leaderboards.md)      | ❌          | ✅           | ❌    | ✍️    |
 | [Payments](usage/payments.md)          | ❌          | ✅           | ❌    | ✍️    |
 | [Invite Links](usage/invite.md/#invite-links)  | ✅          | ❌           | ✅    | ❌    |
