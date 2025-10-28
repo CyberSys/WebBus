@@ -11,10 +11,10 @@ The plugin is designed to simplify the development of HTML5 games and applicatio
 
 
 ## Supported platforms
-- Crazy games
-- Yandex games
-- Poki
-- VK
+<img width="80" height="80" alt="Crazy games" src="https://github.com/user-attachments/assets/91ba18b8-0bf0-4d09-af83-38758d2db7bc" />
+<img width="80" height="80" alt="Yandex games" src="https://github.com/user-attachments/assets/223f7bb2-a1b2-47cc-839c-c3ed7e3bfba6" />
+<img width="80" height="80" alt="Poki" src="https://github.com/user-attachments/assets/28d653cf-2f70-4db4-bf0c-b579871bbb5a" />
+<img width="80" height="80" alt="VK games" src="https://github.com/user-attachments/assets/44581789-8828-4007-a86d-f166886f14de" />
 
 ## Short list of features
 
